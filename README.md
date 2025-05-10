@@ -9,3 +9,8 @@ These are the default credentials for RabbitMQ when running locally.
 localhost → The broker is running on your local machine.
 5672 → The default port RabbitMQ uses for AMQP connections.
 this string tells the client to connect to a RabbitMQ server on the same machine using the guest user credentials over port 5672.
+
+## Simulation slow subscriber
+<img src="img/ss1.png">
+
+When I ran the publisher program, it sent 16 messages to RabbitMQ. This number appeared in the "Queued messages" chart under the "Total" line, indicating that 16 messages were waiting to be consumed. The spike happened because either the consumer wasn't running immediately or was slower than the publisher. After some time, all the messages were successfully acknowledged and consumed, so the total dropped back to 0. This shows that the messaging system is working as expected — messages are queued and then processed. The number may differ on other machines depending on how fast the consumer starts or how many messages the publisher sends.
